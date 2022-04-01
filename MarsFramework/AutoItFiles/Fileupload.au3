@@ -1,0 +1,7 @@
+Sleep(500)
+ControlFocus("Open","","ComboBox1")
+Sleep(500)
+ControlSetText("Open","","ComboBox1",$CmdLine[1])
+Sleep(500)
+ControlClick("Open","","Button1")
+Sleep(500)
