@@ -116,7 +116,7 @@ namespace MarsFramework.Pages
 
         //Shareskill popuperrormessage
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div")]
-        private IWebElement Popuperror { get; set; }
+        private IWebElement Popupmessage { get; set; }
 
 
         //Delete tag
@@ -196,34 +196,31 @@ namespace MarsFramework.Pages
             Thread.Sleep(1000);
             //ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             Save.Click();
- 
-            //Checking for shareskill updatation successfull            
-            string error = Popuperror.Text;
-            if (error == "Please complete the form correctly.")
-            {
-                Console.WriteLine(error);
-            }
-            else
-            {
-                Console.WriteLine("ShareSkill Saved");
-            }    
+
+
+        }
+        internal string Popupmessagecreate()
+        {
+            string message = Popupmessage.Text;
+            return message;
         }
 
         internal void  EditShareSkill()
         {
-
             //Populating the exceldata
             //GlobalDefinitions.wait(5);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
             //GlobalDefinitions.wait(1);
             Thread.Sleep(3000);
 
+            
+            
             //Clearing the textbox
             Title.Clear();
-            Description.Clear();
-
             //reading the values from excel
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
+            //Clearing the textbox
+            Description.Clear();
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
             //click on category and subcategory
@@ -280,8 +277,6 @@ namespace MarsFramework.Pages
 
             //ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             Save.Click();
-           
-
         }
         
     }

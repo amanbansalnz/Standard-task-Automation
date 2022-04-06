@@ -29,8 +29,6 @@ namespace MarsFramework.Global
             return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
         }
         #endregion
-
-
         #region Excel 
         public class ExcelLib
         {
@@ -128,7 +126,7 @@ namespace MarsFramework.Global
 
                 catch (Exception e)
                 {
-                    //Added by Kumar
+                    
                     Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
                     return null;
                 }

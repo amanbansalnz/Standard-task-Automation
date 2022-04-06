@@ -1,33 +1,51 @@
-﻿using OpenQA.Selenium;
+﻿using MarsFramework.Config;
+using MarsFramework.Global;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using RelevantCodes.ExtentReports;
+using System;
+using System.Threading;
+using static NUnit.Core.NUnitFramework;
 
-namespace MarsFramework
+
+namespace MarsFramework.Pages
 {
     internal class Profile
     {
-
         public Profile()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(GlobalDefinitions.driver, this);
         }
 
         #region  Initialize Web Elements 
         //Click on Edit button
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Part Time')]//i[@class='right floated outline small write icon']")]
         private IWebElement AvailabilityTimeEdit { get; set; }
-
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i")]
+        private IWebElement AvailabilityTimeEdit1 { get; set; }
         //Click on Availability Time dropdown
         [FindsBy(How = How.Name, Using = "availabiltyType")]
         private IWebElement AvailabilityTime { get; set; }
-
         //Click on Availability Time option
         [FindsBy(How = How.XPath, Using = "//option[@value='0']")]
         private IWebElement AvailabilityTimeOpt { get; set; }
 
+        //Click on edit Hours
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i")]
+        private IWebElement Hoursedit { get; set; }
         //Click on Availability Hour dropdown
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[3]/div")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select")]
         private IWebElement AvailabilityHours { get; set; }
+        //*[@id="account-profile-section"]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select
 
+        //Click on Earn target edit
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/i")]
+        private IWebElement EarnTargetEdit { get; set; }
+        //Click on Earntarget dropdown
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/select")]
+        private IWebElement EarnTargetDropdown { get; set; }
+       
         //Click on salary
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[4]/div")]
         private IWebElement Salary { get; set; }
@@ -160,11 +178,61 @@ namespace MarsFramework
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[8]/div/div[4]/span/button[1]")]
         private IWebElement Save { get; set; }
 
+        //Find the availability updated message
+        [FindsBy(How = How.XPath, Using = "//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")]
+        private IWebElement AvailabilityUpdated { get; set; }
+
         #endregion
 
         internal void EditProfile()
         {
+            try
+            {
+            //Click on availability edit button
+            GlobalDefinitions.wait(2);
+            AvailabilityTimeEdit1.Click();
+            //Select an element from the dropdown Availability time
+            GlobalDefinitions.wait(2);
+            AvailabilityTime.Click();
+            SelectElement availabilitytimes = new SelectElement(AvailabilityTime);
+            //availabilitytimes.SelectByText("Part Time");
+            //Populate in exceldata
+            GlobalDefinitions.wait(2);
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ProfileDetails");
+            availabilitytimes.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Availability"));
+            //Select the hours edit button and update by selecting from the dropdown
+            Hoursedit.Click();
+            GlobalDefinitions.wait(2);
+            AvailabilityHours.Click();
+            SelectElement availabilityHours = new SelectElement(AvailabilityHours);
+            availabilityHours.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Hours"));
 
+            //Click in edit Earntarget button and select from the dropdown
+            EarnTargetEdit.Click();
+            EarnTargetDropdown.Click();
+            SelectElement Earntargets = new SelectElement(EarnTargetDropdown);
+            Earntargets.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "EarnTarget"));
+            //GlobalDefinitions.wait(2);
+            //Storing the updated message
+            string Updatedavailabilitymessage = AvailabilityUpdated.Text;
+            try
+            {
+                 if (Updatedavailabilitymessage == "Availability updated")
+                 {
+                     Base.test.Log(LogStatus.Pass, "Test Passed,Edit - Updated the Availability Successfully");
+                 }
+            }
+            catch (Exception)
+            {
+
+                 Base.test.Log(LogStatus.Fail, "Availability not Updated");
+            }
+
+            }
+            catch(Exception)
+            {
+                Base.test.Log(LogStatus.Fail, "Availability Updation Test Failed!");
+            }
         }
     }
 }

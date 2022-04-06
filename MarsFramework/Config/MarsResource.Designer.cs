@@ -70,7 +70,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\MVPProject\Competitiontask1\MarsFramework\ExcelData\TestData.xlsx.
+        ///   Looks up a localized string similar to C:\MVPProject\Standard-task-Automation\MarsFramework\ExcelData\TestData.xlsx.
         /// </summary>
         internal static string ExcelPath {
             get {
@@ -79,7 +79,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\MVPProject\Competitiontask1\MarsFramework\WorkSample\Samplefile.
+        ///   Looks up a localized string similar to C:\MVPProject\Standard-task-Automation\MarsFramework\WorkSample\Samplefile.
         /// </summary>
         internal static string Filepath {
             get {
@@ -97,7 +97,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\MVPProject\Competitiontask1\MarsFramework\TestReports.
+        ///   Looks up a localized string similar to C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\MarsReports.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -106,7 +106,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\MVPProject\Competitiontask1\MarsFramework\TestReports.
+        ///   Looks up a localized string similar to C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\ExtentReport_Config.xml.
         /// </summary>
         internal static string ReportXMLPath {
             get {
@@ -115,7 +115,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\MVPProject\Competitiontask1\MarsFramework\TestReports\Screenshots.
+        ///   Looks up a localized string similar to C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\Screenshots\Sreena.
         /// </summary>
         internal static string ScreenShotPath {
             get {

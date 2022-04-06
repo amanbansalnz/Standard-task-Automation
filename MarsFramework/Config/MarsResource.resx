@@ -122,22 +122,22 @@
     <comment>1 for firefox and 2 for Chrome</comment>
   </data>
   <data name="ExcelPath" xml:space="preserve">
-    <value>C:\MVPProject\Competitiontask1\MarsFramework\ExcelData\TestData.xlsx</value>
+    <value>C:\MVPProject\Standard-task-Automation\MarsFramework\ExcelData\TestData.xlsx</value>
   </data>
   <data name="Filepath" xml:space="preserve">
-    <value>C:\MVPProject\Competitiontask1\MarsFramework\WorkSample\Samplefile</value>
+    <value>C:\MVPProject\Standard-task-Automation\MarsFramework\WorkSample\Samplefile</value>
   </data>
   <data name="IsLogin" xml:space="preserve">
     <value>true</value>
     <comment>If true Login, else Register</comment>
   </data>
   <data name="ReportPath" xml:space="preserve">
-    <value>C:\MVPProject\Competitiontask1\MarsFramework\TestReports</value>
+    <value>C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\MarsReports.html</value>
   </data>
   <data name="ReportXMLPath" xml:space="preserve">
-    <value>C:\MVPProject\Competitiontask1\MarsFramework\TestReports</value>
+    <value>C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\ExtentReport_Config.xml</value>
   </data>
   <data name="ScreenShotPath" xml:space="preserve">
-    <value>C:\MVPProject\Competitiontask1\MarsFramework\TestReports\Screenshots</value>
+    <value>C:\MVPProject\Standard-task-Automation\MarsFramework\TestReports\Screenshots\Sreena</value>
   </data>
 </root>
