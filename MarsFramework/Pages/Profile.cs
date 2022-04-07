@@ -181,7 +181,10 @@ namespace MarsFramework.Pages
         //Find the availability updated message
         [FindsBy(How = How.XPath, Using = "//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']")]
         private IWebElement AvailabilityUpdated { get; set; }
-
+        
+        //Search results
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div/div/div/label/em")]
+        private IWebElement SearchResults { get; set; }
         #endregion
 
         internal void EditProfile()

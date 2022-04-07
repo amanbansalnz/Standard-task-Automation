@@ -8,8 +8,6 @@ using System;
 using System.Threading;
 using static NUnit.Core.NUnitFramework;
 
-
-
 namespace MarsFramework.Pages
 {
     internal class ShareSkill
@@ -237,8 +235,7 @@ namespace MarsFramework.Pages
             //Adding tags
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
-            //Tags.Click();
-
+            
             //Servicetype and location type
             //LocationTypeOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "LocationType"));
 

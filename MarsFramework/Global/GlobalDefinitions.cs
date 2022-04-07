@@ -8,6 +8,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static NUnit.Core.NUnitFramework;
 
 namespace MarsFramework.Global
 {
@@ -17,17 +18,76 @@ namespace MarsFramework.Global
         public static IWebDriver driver { get; set; }
 
         #region WaitforElement 
-
         public static void wait(int time)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
 
         }
-        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
+
+
+        public static void WaitToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
-            return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+
+            if (locator == "XPath")
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("locatorvalue")));
+            }
+            if (locator == "Id")
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("locatorvalue")));
+            }
+            if (locator == "CssSelector")
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("locatorvalue")));
+            }
+
         }
+        public static void WaitToBeVisible(IWebDriver driver, string locator, string locatorValue, int seconds)
+        {
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+            if (locator == "XPath")
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("locatorvalue")));
+            }
+            if (locator == "Id")
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id("locatorvalue")));
+            }
+            if (locator == "CssSelector")
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("locatorvalue")));
+            }
+        }
+        public static void WaitToBeExists(IWebDriver driver, string locator, string locatorValue, int seconds)
+        {
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+            if (locator == "XPath")
+            {
+                wait.Until(ExpectedConditions.ElementExists(By.XPath("locatorvalue")));
+            }
+            if (locator == "Id")
+            {
+                wait.Until(ExpectedConditions.ElementExists(By.Id("locatorvalue")));
+            }
+            if (locator == "CssSelector")
+            {
+                wait.Until(ExpectedConditions.ElementExists(By.CssSelector("locatorvalue")));
+            }
+        }
+
+
+
+
+
+
+
+        //public static IWebElement WaitforElementClickable(this IWebElement element, IWebDriver driver, int timeOutinSeconds)
+        //    {
+        //        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+        //        return wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        //    }
+
         #endregion
         #region Excel 
         public class ExcelLib
@@ -65,7 +125,7 @@ namespace MarsFramework.Global
                         });
                         //Get all the tables
                         var table = result.Tables;
-                        
+
                         // store it in data table
                         var resultTable = table[sheetName];
                         return resultTable;
@@ -126,7 +186,7 @@ namespace MarsFramework.Global
 
                 catch (Exception e)
                 {
-                    
+
                     Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
                     return null;
                 }
@@ -185,5 +245,6 @@ namespace MarsFramework.Global
             }
         }
         #endregion
+
     }
 }

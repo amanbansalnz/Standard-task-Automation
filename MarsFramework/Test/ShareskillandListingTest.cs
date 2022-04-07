@@ -3,10 +3,14 @@ using MarsFramework.Pages;
 using NUnit.Framework;
 using RelevantCodes.ExtentReports;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MarsFramework
+namespace MarsFramework.Test
 {
-    public class Program
+    internal class ShareskillandListingTest
     {
         [TestFixture]
         [Category("Sprint1")]
