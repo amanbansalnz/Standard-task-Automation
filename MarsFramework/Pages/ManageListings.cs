@@ -64,7 +64,8 @@ namespace MarsFramework.Pages
             GlobalDefinitions.wait(2);
             //Click on ManageListing tab
             manageListingsLink.Click();
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.wait(3);
+            Thread.Sleep(2000);
             view.Click();            
         }
         public string getfirsttitle()
@@ -86,12 +87,14 @@ namespace MarsFramework.Pages
         {
             Thread.Sleep(2000);
             manageListingsLink.Click();
-            GlobalDefinitions.wait(2);
+            //GlobalDefinitions.wait(2);
+            Thread.Sleep(2000);
             edit.Click();
             ShareSkill shareSkill = new ShareSkill();
             shareSkill.EditShareSkill();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
             GlobalDefinitions.wait(2);
+
             //string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
             //Console.WriteLine("Expected Title" + expectedtitle);
            // return firstSkilltitle.Text;
