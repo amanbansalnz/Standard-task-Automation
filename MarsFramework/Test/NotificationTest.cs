@@ -16,7 +16,7 @@ namespace MarsFramework.Test
         class User : Global.Base
         {
             [Test, Order(1)]
-            public void editProfiledetails()
+            public void notificationview()
             {
                 //Testing for no notification message 
                 test = extent.StartTest(" Notification ", "testing Notoficatios ");

@@ -16,7 +16,7 @@ namespace MarsFramework.Test
         class User : Global.Base
         {
             [Test, Order(1)]
-            public void editProfiledetails()
+            public void sendchatmessages()
             {
                 test = extent.StartTest(" Chats ", "testing chat ");
                 Chat chatobj = new Chat();

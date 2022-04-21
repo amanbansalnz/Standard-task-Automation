@@ -20,7 +20,6 @@ namespace MarsFramework.Test
             {
                 test = extent.StartTest("Search Skill", "Search Skill");
                 SearchSkill searchSkill = new SearchSkill();
-                //bool result = searchSkill.SearchSkilllist();
                 Assert.IsTrue(searchSkill.GetSearchSkilllist());
                 test.Log(LogStatus.Pass, "Test Passed,SearchSkill - Searched Skill successfully");
 

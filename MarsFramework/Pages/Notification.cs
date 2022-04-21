@@ -25,12 +25,11 @@ namespace MarsFramework.Pages
        
         public string notifications()
         {
-            //GlobalDefinitions.wait(3);
-            Thread.Sleep(2000);
+            GlobalDefinitions.wait(3);
             clickNotification.Click();
-            Thread.Sleep(2000);
-            string message = notoficationmessage.Text;
-            return message;
+            Thread.Sleep(3000);
+            string actualmessage = notoficationmessage.Text;
+            return actualmessage;
         }
 
     }
