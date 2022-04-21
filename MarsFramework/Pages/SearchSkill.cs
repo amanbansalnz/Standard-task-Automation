@@ -44,7 +44,6 @@ namespace MarsFramework.Pages
         public bool GetSearchSkilllist()
         {
             Thread.Sleep(5000);
-            //WaitForElement(Driver.driver, By.XPath(“//a[contains(.,’Room Settings’)]”), 20);
             //GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath" ,"//*[@id='account-profile-section']/div/div[1]/div[1]/input", 3);
             Searchbutton.Click();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SearchSkill");
