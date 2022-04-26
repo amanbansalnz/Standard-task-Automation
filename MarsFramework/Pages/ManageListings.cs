@@ -94,13 +94,10 @@ namespace MarsFramework.Pages
             shareSkill.EditShareSkill();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
             GlobalDefinitions.wait(2);
-
             //string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
             //Console.WriteLine("Expected Title" + expectedtitle);
-           // return firstSkilltitle.Text;
-           
-
-        }
+            // return firstSkilltitle.Text;
+          }
         public string deleteListings()
         {
             GlobalDefinitions.wait(2);

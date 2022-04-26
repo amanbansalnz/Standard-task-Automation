@@ -126,6 +126,7 @@
     <Compile Include="Pages\ManageListings.cs" />
     <Compile Include="Pages\Notification.cs" />
     <Compile Include="Pages\ProfileLanguage.cs" />
+    <Compile Include="Pages\ProfileSkills.cs" />
     <Compile Include="Pages\SearchSkill.cs" />
     <Compile Include="Pages\ShareSkill.cs" />
     <Compile Include="Pages\SignIn.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Test\NotificationTest.cs" />
     <Compile Include="Test\Profiledetailstest.cs" />
     <Compile Include="Test\ProfileLanguageTest.cs" />
+    <Compile Include="Test\ProfileskillsTest.cs" />
     <Compile Include="Test\SearchSkillTest.cs" />
     <Compile Include="Test\ShareskillandListingTest.cs" />
   </ItemGroup>
