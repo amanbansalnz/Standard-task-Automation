@@ -202,7 +202,7 @@ namespace MarsFramework.Pages
             //Removing Existing tags
             RemoveTag.Click();
 
-            //Adding tags
+            //Add tags and press enter
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
 
