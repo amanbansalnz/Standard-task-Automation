@@ -66,9 +66,6 @@ namespace MarsFramework.Pages
             {
                 return false;
             }
-            
-            
-            
         }
      
     }

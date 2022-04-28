@@ -165,22 +165,11 @@ namespace MarsFramework.Pages
             LocationTypeClick();
 
             //reading data for startdate and enddate
-
             StartDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
-           
             EndDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Enddate"));
 
-            //Click on the day
-            string day = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
-            if (day == "Mon")
-            {
-                Mon.Click();
-            }
-
-            //StartTime and End time for monday
-            MonStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
-            MonEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
-            
+            //Call the cutom method to Select Day and Time
+            SelectDayandTime();
             //SkillTradeOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill-Exchange"));
             SkillExchange.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill-Exchange"));
             SkillExchange.SendKeys(Keys.Enter);
@@ -214,8 +203,6 @@ namespace MarsFramework.Pages
             //GlobalDefinitions.wait(1);
             Thread.Sleep(3000);
 
-            
-            
             //Clearing the textbox
             Title.Clear();
             //reading the values from excel
@@ -247,16 +234,7 @@ namespace MarsFramework.Pages
             StartDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
             EndDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Enddate"));
 
-            ////Click on the day
-            //string day = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
-            //if (day == "Mon")
-            //{
-            //    Mon.Click();
-            //}
-
-            ////StartTime and End time for monday
-            //MonStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
-            //MonEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
+           //Call the custom method to select Day and Time
             SelectDayandTime();
 
             //Click on Remove the Skill-Exchangetag
