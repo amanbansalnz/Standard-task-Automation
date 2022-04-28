@@ -56,9 +56,14 @@ namespace MarsFramework.Pages
             Thread.Sleep(3000);
             SkillsTab.Click();
             AddNewSkillBtn.Click();
+
             //Populate the Excel Sheet
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Skills");
+
+            //ReadData fromExcelsheet
             SkillTextBox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill"));
+
+            //Readdata from excelsheet for dropdown skilllevel
             SelectElement skilllevels = new SelectElement(SkillLevel);
             skilllevels.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Level"));
             AddSkillButton.Click();
