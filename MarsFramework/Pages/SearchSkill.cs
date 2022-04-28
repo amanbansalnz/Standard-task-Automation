@@ -27,19 +27,12 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id=service-search-section']/div[2]/div/section/div/div[1]/div[2]/i")]
         private IWebElement Searchbuttonno2 { get; set; }
 
-        //[FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[1]/div[1]")]
-        //private IWebElement Searchtextbox1 { get; set; }
-
-
         //Identify the element Allcategories
         [FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[1]/div[1]/div/a[1]/b")]
         private IWebElement Allcategorieslink { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div")]
         private IWebElement SearchResults { get; set; }//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div/div[1]
-        //Search results
-        //[FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div/div/div/label/em")]
-        //private IWebElement SearchResults { get; set; }
 
         public bool GetSearchSkilllist()
         {
@@ -51,13 +44,9 @@ namespace MarsFramework.Pages
             Searchtextbox.Click();
             Searchtextbox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Search"));
             Searchtextbox.SendKeys(Keys.Enter);
-            //Allcategorieslink.Click();
-            //String bodyText = driver.FindElement(By.TagName("body")).Text;
-            //Assert.True(bodyText.Contains(F1), "Text not found!");
-            //Thread.Sleep(3000);
             GlobalDefinitions.WaitforElement(30);
-            //GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath", "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div", 3);
             string bodytext = SearchResults.Text;
+
             if (bodytext.Contains(GlobalDefinitions.ExcelLib.ReadData(2, "Search")))
             { 
                 return true;
