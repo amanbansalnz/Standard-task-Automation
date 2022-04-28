@@ -136,30 +136,24 @@ namespace MarsFramework.Pages
         internal async void EnterShareSkill()
         {
             //Click shareskill button
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(3);
             ShareSkillButton.Click();
 
             //Populating the exceldata
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(3);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
 
             //reading the values from excel
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
-            //click on category and subcategory
-            CategoryDropDown.Click();
-            SelectElement categoryselect = new SelectElement(CategoryDropDown);
-            categoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
-            SubCategoryDropDown.Click();
-            SelectElement subcategoryselect = new SelectElement(SubCategoryDropDown);
-            subcategoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
+            //click on category and subcategory using the method
+            Category();
 
             //Adding tags
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
             //Tags.Click();
-
             
             //Servicetype and location type
             LocationTypeClick();
@@ -175,18 +169,11 @@ namespace MarsFramework.Pages
             SkillExchange.SendKeys(Keys.Enter);
 
             //WorkSample Upload
-            WorkSample.Click();
-            AutoItX3 autoIt = new AutoItX3();
-            autoIt.WinActivate("Open");
-            Thread.Sleep(1000);
-            autoIt.Send(Base.Filepath);
-            Thread.Sleep(2000);
-            autoIt.Send("{ENTER}");
+            WorkSampleupload();
 
             Thread.Sleep(1000);
             //ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             Save.Click();
-
 
         }
         internal string Popupmessagecreate()
@@ -198,12 +185,10 @@ namespace MarsFramework.Pages
         internal void  EditShareSkill()
         {
             //Populating the exceldata
-            //GlobalDefinitions.wait(5);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
-            //GlobalDefinitions.wait(1);
-            Thread.Sleep(3000);
 
             //Clearing the textbox
+            GlobalDefinitions.WaitforElement(3);
             Title.Clear();
             //reading the values from excel
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
@@ -211,13 +196,8 @@ namespace MarsFramework.Pages
             Description.Clear();
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
-            //click on category and subcategory
-            CategoryDropDown.Click();
-            SelectElement categoryselect = new SelectElement(CategoryDropDown);
-            categoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
-            SubCategoryDropDown.Click();
-            SelectElement subcategoryselect = new SelectElement(SubCategoryDropDown);
-            subcategoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
+            //click on category and subcategory using the method
+            Category();
 
             //Removing Existing tags
             RemoveTag.Click();
@@ -246,13 +226,7 @@ namespace MarsFramework.Pages
             Thread.Sleep(1000);
 
             //WorkSample Upload
-            WorkSample.Click();
-            AutoItX3 autoIt = new AutoItX3();
-            autoIt.WinActivate("Open");
-            Thread.Sleep(1000);
-            autoIt.Send(Base.Filepath);
-            Thread.Sleep(2000);
-            autoIt.Send("{ENTER}");
+            WorkSampleupload();
 
             //ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             Save.Click();
@@ -294,6 +268,27 @@ namespace MarsFramework.Pages
                 }
 
             }
+        }
+
+        public void WorkSampleupload()
+        {
+            WorkSample.Click();
+            AutoItX3 autoIt = new AutoItX3();
+            autoIt.WinActivate("Open");
+            Thread.Sleep(1000);
+            autoIt.Send(Base.Filepath);
+            Thread.Sleep(2000);
+            autoIt.Send("{ENTER}");
+        }
+        public void Category()
+        {
+            CategoryDropDown.Click();
+            SelectElement categoryselect = new SelectElement(CategoryDropDown);
+            categoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
+            SubCategoryDropDown.Click();
+            SelectElement subcategoryselect = new SelectElement(SubCategoryDropDown);
+            subcategoryselect.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
+
         }
     }
 }
