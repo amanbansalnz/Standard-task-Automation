@@ -24,6 +24,7 @@ namespace MarsFramework.Global
 
         }
 
+        //Exlicit Waits
         public static void WaitToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
@@ -76,12 +77,6 @@ namespace MarsFramework.Global
             }
         }
 
-        //public static IWebElement WaitforElementClickable(this IWebElement element, IWebDriver driver, int timeOutinSeconds)
-        //    {
-        //        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
-        //        return wait.Until(ExpectedConditions.ElementToBeClickable(element));
-        //    }
-
         #endregion
         #region Excel 
         public class ExcelLib
@@ -100,8 +95,7 @@ namespace MarsFramework.Global
             {
                 dataCol.Clear();
             }
-
-            //trial
+          
             private static DataTable ExcelToDataTable(string fileName, string sheetName)
             {
                 // Open file and return as Stream
