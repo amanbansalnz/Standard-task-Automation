@@ -79,10 +79,7 @@ namespace MarsFramework.Pages
             shareSkill.EditShareSkill();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
             GlobalDefinitions.WaitforElement(2);
-            //string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
-            //Console.WriteLine("Expected Title" + expectedtitle);
-            // return firstSkilltitle.Text;
-          }
+        }
         public string deleteListings()
         {
             GlobalDefinitions.WaitforElement(2);
@@ -92,7 +89,6 @@ namespace MarsFramework.Pages
             yes.Click();
             GlobalDefinitions.WaitforElement(2);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
-            //GlobalDefinitions.wait(1);
             GlobalDefinitions.WaitforElement(2);
             string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
             string expectedmessage = expectedtitle + " has been deleted";
