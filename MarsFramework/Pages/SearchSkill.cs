@@ -47,7 +47,7 @@ namespace MarsFramework.Pages
             //GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath" ,"//*[@id='account-profile-section']/div/div[1]/div[1]/input", 3);
             Searchbutton.Click();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SearchSkill");
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(3);
             Searchtextbox.Click();
             Searchtextbox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Search"));
             Searchtextbox.SendKeys(Keys.Enter);
@@ -55,7 +55,7 @@ namespace MarsFramework.Pages
             //String bodyText = driver.FindElement(By.TagName("body")).Text;
             //Assert.True(bodyText.Contains(F1), "Text not found!");
             //Thread.Sleep(3000);
-            GlobalDefinitions.wait(3);
+            GlobalDefinitions.WaitforElement(30);
             //GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath", "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div", 3);
             string bodytext = SearchResults.Text;
             if (bodytext.Contains(GlobalDefinitions.ExcelLib.ReadData(2, "Search")))

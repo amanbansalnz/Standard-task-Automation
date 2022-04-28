@@ -32,19 +32,12 @@ namespace MarsFramework.Pages
 
         internal void LoginSteps()
         {
-            //GlobalDefinitions.driver.Navigate().GoToUrl("http://localhost:5000/");
-            //SignIntab.Click();
-            //GlobalDefinitions.ExcelLib.PopulateInCollection("TestData", "SignIn");
-            //GlobalDefinitions.driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
-            //Email.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Username"));
-            //Password.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
-            //LoginBtn.Click();
-
+           
             ////passing the value directly
             //GlobalDefinitions.driver.Navigate().GoToUrl("http://localhost:5000/");
             //SignIntab.Click();
-            //Email.SendKeys("sreesat25@yahoo.co.in");
-            //Password.SendKeys("Amma260872");
+            //Email.SendKeys("abcd@gmail.com");
+            //Password.SendKeys("abcd");
             //LoginBtn.Click();
 
             GlobalDefinitions.driver.Navigate().GoToUrl("http://localhost:5000/");

@@ -24,9 +24,6 @@ namespace MarsFramework.Test
                 test = extent.StartTest("Create ShareSkill", "Shareskill");
                 ShareSkill shareSkill = new ShareSkill();
                 shareSkill.EnterShareSkill();
-                //string expectedmessage = "Service Listing Added successfully";
-                //string actualmessage = shareSkill.Popupmessagecreate();
-                //Assert.AreEqual(expectedmessage, actualmessage);
                 Base.test.Log(LogStatus.Pass, "Test Passed,Create - Created the Shareskill successfully");
 
             }

@@ -20,9 +20,7 @@ namespace MarsFramework.Pages
         //Click on Manage Listings Link
         [FindsBy(How = How.LinkText, Using = "Manage Listings")]
         private IWebElement manageListingsLink { get; set; }
-        //[FindsBy(How = How.XPath, Using = "//*[@id=service-detail-section']/section[1]/div/a[3]")]
-        //private IWebElement manageListingsLink { get; set; }
-
+       
         //View the listing                 
         [FindsBy(How = How.XPath, Using = "//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[8]/div/button[1]/i")]
         private IWebElement view { get; set; }
@@ -30,10 +28,6 @@ namespace MarsFramework.Pages
         //view firstrecord
         [FindsBy(How = How.XPath, Using = "(//i[@class='skill-title'])[1]")]
         private IWebElement firstRecord { get; set; }
-
-        ////Firstskilltitle
-        //[FindsBy(How = How.XPath, Using = "//*[@id='service-detail-section']/div[2]/div/div[1]/div/div/div/div")]
-        //private IWebElement firstSkilltitle{ get; set; }
 
         //Delete the listing
         [FindsBy(How = How.XPath, Using = "//table[1]/tbody[1]")]
@@ -61,23 +55,15 @@ namespace MarsFramework.Pages
 
         internal void viewListings()
         {
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             //Click on ManageListing tab
             manageListingsLink.Click();
-            GlobalDefinitions.wait(3);
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(20);
             view.Click();            
         }
         public string getfirsttitle()
         {
             manageListingsLink.Click();
-            //GlobalDefinitions.wait(3);
-            //view.Click();
-            //GlobalDefinitions.wait(3);
-            ////firstSkilltitle.Click();
-            //return firstSkilltitle.Text;
-            //*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr/td[3]
-            //*[@id="listing-management-section"]/div[2]/div[1]/div[1]/table/tbody/tr/td[3]
             Thread.Sleep(2000);
             Console.WriteLine("Actual title" + firstSkilltitle.Text);
             return firstSkilltitle.Text;
@@ -87,28 +73,27 @@ namespace MarsFramework.Pages
         {
             Thread.Sleep(2000);
             manageListingsLink.Click();
-            //GlobalDefinitions.wait(2);
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath", "(//i[@class='outline write icon'])[1]", 10000);
             edit.Click();
             ShareSkill shareSkill = new ShareSkill();
             shareSkill.EditShareSkill();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             //string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
             //Console.WriteLine("Expected Title" + expectedtitle);
             // return firstSkilltitle.Text;
           }
         public string deleteListings()
         {
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             manageListingsLink.Click();
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             deletetherecord.Click();
             yes.Click();
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "EditShareSkill");
             //GlobalDefinitions.wait(1);
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             string expectedtitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
             string expectedmessage = expectedtitle + " has been deleted";
             return expectedmessage;

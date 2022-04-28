@@ -192,20 +192,20 @@ namespace MarsFramework.Pages
             try
             {
             //Click on availability edit button
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             AvailabilityTimeEdit1.Click();
             //Select an element from the dropdown Availability time
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             AvailabilityTime.Click();
             SelectElement availabilitytimes = new SelectElement(AvailabilityTime);
             //availabilitytimes.SelectByText("Part Time");
             //Populate in exceldata
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ProfileDetails");
             availabilitytimes.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Availability"));
             //Select the hours edit button and update by selecting from the dropdown
             Hoursedit.Click();
-            GlobalDefinitions.wait(2);
+            GlobalDefinitions.WaitforElement(2);
             AvailabilityHours.Click();
             SelectElement availabilityHours = new SelectElement(AvailabilityHours);
             availabilityHours.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Hours"));

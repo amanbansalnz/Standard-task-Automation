@@ -48,6 +48,14 @@ namespace MarsFramework.Pages
         //Select the Location Type
         [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field']")]
         private IWebElement LocationTypeOption { get; set; }
+        
+        //Select the Location Type
+        [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field'][1]")]
+        private IWebElement LocationTypeOnsite { get; set; }
+
+        //Select the Location Type
+        [FindsBy(How = How.XPath, Using = "//form/div[6]/div[@class='twelve wide column']/div/div[@class = 'field'][2]")]
+        private IWebElement LocationTypeOnline { get; set; }
 
         //Click on Start Date dropdown
         [FindsBy(How = How.Name, Using = "startDate")]
@@ -125,10 +133,6 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/span/a")]
         private IWebElement RemoveSkillExchageTag { get; set; }
 
-
-
-
-
         internal async void EnterShareSkill()
         {
             //Click shareskill button
@@ -138,8 +142,6 @@ namespace MarsFramework.Pages
             //Populating the exceldata
             Thread.Sleep(2000);
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
-            //GlobalDefinitions.wait(1);
-            //Thread.Sleep(3000);
 
             //reading the values from excel
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
@@ -158,22 +160,23 @@ namespace MarsFramework.Pages
             Tags.SendKeys(Keys.Enter);
             //Tags.Click();
 
+            
             //Servicetype and location type
-            //LocationTypeOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "LocationType"));
+            LocationTypeClick();
 
             //reading data for startdate and enddate
-            
+
             StartDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
            
             EndDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Enddate"));
 
             //Click on the day
-            string  day =GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
+            string day = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
             if (day == "Mon")
             {
                 Mon.Click();
             }
-            
+
             //StartTime and End time for monday
             MonStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
             MonEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
@@ -235,25 +238,26 @@ namespace MarsFramework.Pages
             //Adding tags
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
-            
+
             //Servicetype and location type
-            //LocationTypeOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "LocationType"));
+            LocationTypeClick();
 
             //reading data for startdate and enddate
-            GlobalDefinitions.wait(4);
+            GlobalDefinitions.WaitforElement(4);
             StartDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Startdate"));
             EndDateDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Enddate"));
 
-            //Click on the day
-            string day = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
-            if (day == "Mon")
-            {
-                Mon.Click();
-            }
+            ////Click on the day
+            //string day = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
+            //if (day == "Mon")
+            //{
+            //    Mon.Click();
+            //}
 
-            //StartTime and End time for monday
-            MonStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
-            MonEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
+            ////StartTime and End time for monday
+            //MonStartTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
+            //MonEndTime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
+            SelectDayandTime();
 
             //Click on Remove the Skill-Exchangetag
             RemoveSkillExchageTag.Click();
@@ -275,6 +279,43 @@ namespace MarsFramework.Pages
             //ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             Save.Click();
         }
-        
+        //Custom Method for location type
+        public void LocationTypeClick()
+        {
+           
+            if (GlobalDefinitions.ExcelLib.ReadData(2, "LocationType") == "On-site")
+            {
+                LocationTypeOnsite.Click();
+            }
+            else if (GlobalDefinitions.ExcelLib.ReadData(2, "LocationType") == "Online")
+            {
+                LocationTypeOnline.Click();
+            }
+
+
+        }
+        //Custom method to select Day and Time
+        public void SelectDayandTime()
+        {
+            for(int i=2; i<=8;i++)
+            {
+                var day = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[" + i + "]/div[1]/div/input"));
+                var starttime = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[" + i + "]/div[2]/input"));
+                var endtime = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[" + i + "]/div[3]/input"));
+                var label = GlobalDefinitions.driver.FindElement(By.XPath("//div[@class='fields'][" + i + "]/div/div//label"));
+                string selectday = GlobalDefinitions.ExcelLib.ReadData(2, "Selectday");
+                if (selectday == label.Text)
+                {
+                    day.Click();
+                    starttime.Click();
+                    //input value to startdate
+                    starttime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Starttime"));
+                    endtime.Click();
+                    //inputvalue to endtime
+                    endtime.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Endtime"));
+                }
+
+            }
+        }
     }
 }

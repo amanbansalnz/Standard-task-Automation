@@ -70,14 +70,14 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div")]
         private IWebElement deletedmessage { get; set; }
 
-       
+
         public void CreateNewLanguage()
         {
             try
             {
-                Thread.Sleep(2000);
+                // GlobalDefinitions.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                GlobalDefinitions.WaitforElement(20);       
                 addNewLanguage.Click();
-                Thread.Sleep(2000);
                 addlanguagetextbox.Click();
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ProfileLanguage");
                 addlanguagetextbox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Language"));
@@ -100,11 +100,11 @@ namespace MarsFramework.Pages
         }
         public void UpdateLanguage()
         {
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(20);
             userprofile.Click();
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(20);
             editbutton.Click();
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(20);
             firstrecord.Clear();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ProfileLanguage");
             firstrecord.SendKeys(GlobalDefinitions.ExcelLib.ReadData(3, "Language"));
@@ -115,13 +115,15 @@ namespace MarsFramework.Pages
         public void DeleteLanguage()
         {
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ProfileLanguage");
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitforElement(20);
             deletebutton.Click();
         }
         public string ValidateDeletedRecord()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(2000); 
+            //GlobalDefinitions.WaitToBeVisible(GlobalDefinitions.driver, "XPath", "/html/body/div[1]/div", 10000);
             string deletemessage = deletedmessage.Text;
+            Console.WriteLine(deletemessage);
             return deletemessage;
 
         }

@@ -34,9 +34,9 @@ namespace MarsFramework.Pages
 
         public string sendmessage()
         {
-            GlobalDefinitions.wait(3);
+            GlobalDefinitions.WaitforElement(3);
             chatbutton.Click();
-            GlobalDefinitions.wait(3);
+            GlobalDefinitions.WaitforElement(3);
             chatextbox.Click();
             chatextbox.SendKeys("Hello");
             sendbutton.Click();

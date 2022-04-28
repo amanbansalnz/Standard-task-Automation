@@ -25,9 +25,9 @@ namespace MarsFramework.Pages
        
         public string notifications()
         {
-            GlobalDefinitions.wait(3);
+            GlobalDefinitions.WaitforElement(3);
             clickNotification.Click();
-            Thread.Sleep(3000);
+            GlobalDefinitions.WaitforElement(4);
             string actualmessage = notoficationmessage.Text;
             return actualmessage;
         }
