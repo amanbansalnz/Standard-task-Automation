@@ -55,7 +55,29 @@ namespace MarsFramework.Test
                 }
 
             }
+
             [Test, Order(3)]
+            public void CertIncompletevalues()
+            {
+                try
+                {
+                    test = extent.StartTest(" Certification ", "testing Certification with Incomplete values  ");
+                    Certificate certificateObj = new Certificate();
+                    certificateObj.IncompleteCertification(5);
+                    string actualmessage = certificateObj.getcertimessage();
+                    string expectedmessage = "Please enter Certification Name, Certification From and Certification Year";
+                    Assert.AreEqual(expectedmessage, actualmessage);
+                    test.Log(LogStatus.Pass, "Test Passed, Certification cannot be created with Incomplete Information");
+
+                }
+                catch (Exception ex)
+                {
+                    test.Log(LogStatus.Fail, "Test Fail");
+                }
+
+            }
+
+            [Test, Order(4)]
             public void UpdateCertification()
             {
                 try
@@ -76,7 +98,7 @@ namespace MarsFramework.Test
                 }
             }
 
-            [Test, Order(4)]
+            [Test, Order(5)]
             public void DeleteCertification()
             {
                 try

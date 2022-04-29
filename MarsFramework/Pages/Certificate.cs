@@ -69,15 +69,7 @@ namespace MarsFramework.Pages
             certificationTab.Click();
             Addnew.Click();
             Certificationrecord(row);
-            AddButton.Click();
-            //CertificateTextbox.Click();
-            //GlobalDefinitions.WaitforElement(4);
-            //GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Certificate");
-            //CertificateTextbox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(row, "Certificate"));
-            //CertificationFrom.SendKeys(GlobalDefinitions.ExcelLib.ReadData(row, "CertifiedFrom"));
-            //SelectElement years = new SelectElement(Yeardropdown);
-            //years.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Year"));
-            //AddButton.Click();
+             AddButton.Click();
         }
         public void UpdateCertification(int row)
         {
@@ -99,6 +91,18 @@ namespace MarsFramework.Pages
             SelectElement years = new SelectElement(Yeardropdown);
             years.SelectByText(GlobalDefinitions.ExcelLib.ReadData(row, "Year"));
         }
+        public void IncompleteCertification(int row)
+        {
+            GlobalDefinitions.WaitforElement(4);
+            certificationTab.Click();
+            Addnew.Click();
+            CertificateTextbox.Click();
+            GlobalDefinitions.WaitforElement(4);
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Certificate");
+            CertificateTextbox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(row, "Certificate"));
+            CertificationFrom.SendKeys(GlobalDefinitions.ExcelLib.ReadData(row, "CertifiedFrom"));
+            AddButton.Click();
+        }
         public void DeleteCertification()
         {
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Certificate");
@@ -107,8 +111,6 @@ namespace MarsFramework.Pages
             GlobalDefinitions.WaitforElement(4);
             DeleteButton.Click();
         }
-        
-           
         public string getcertimessage()
         {
             Thread.Sleep(3000);
